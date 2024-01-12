@@ -7,7 +7,7 @@
   };
 
   outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-darwin" ] (system:
+    flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ] (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in
@@ -72,7 +72,7 @@
             description = "File previewer for a terminal";
             homepage = "https://github.com/NikitaIvanovV/ctpv";
             license = licenses.mit;
-            platforms = platforms.linux;
+            platforms = platforms.linux ++ platforms.darwin;
             maintainers = [ maintainers.wesleyjrz ];
           };
         };
